@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>رحلة الوقار - لعبة الحجاب التفاعلية</title>
+  <title>رحلة الوقار - مغامرة الحياء ولعبة الحجاب</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Tajawal & Cairo -->
@@ -17,6 +17,125 @@
     body { font-family: 'Tajawal', sans-serif; background-color: #fff5f7; }
     .card-shadow { box-shadow: 0 15px 30px -5px rgba(236, 72, 153, 0.15); }
     .img-card-transition { transition: all 0.4s ease-in-out; }
+
+    /* ===== مغامرة مفاتيح الحياء (إضافة جديدة، لا تمس أنماط اللعبة الأصلية) ===== */
+    :root { --hy-purple:#6d28d9; --hy-deep:#4c1d95; --hy-lilac:#ede9fe; --hy-pink:#be185d; --hy-gold:#f59e0b; --hy-gold2:#fcd34d; --hy-cream:#fff5f7; }
+    .hidden { display:none !important; }
+    #game-container { padding-top: 0 !important; }
+    .hy-nav { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; margin:0 -1.5rem 1.25rem; padding:10px 18px; text-align:right;
+      background: linear-gradient(135deg,var(--hy-deep),var(--hy-purple)); color:#fff; position:relative; }
+    @media (min-width:768px){ .hy-nav{ margin:0 -2rem 1.5rem; } }
+    .hy-nav::after { content:""; position:absolute; inset:auto 0 0 0; height:4px; background: repeating-linear-gradient(90deg,var(--hy-gold) 0 10px,var(--hy-gold2) 10px 20px); }
+    .hy-brand { display:flex; align-items:center; gap:10px; }
+    .hy-brand b { font-family:'Cairo',sans-serif; font-size:1.05rem; display:block; line-height:1.2; }
+    .hy-brand small { opacity:.85; font-size:.72rem; }
+    .hy-avatar { width:46px; height:46px; border-radius:50%; border:3px solid var(--hy-gold2); background:#fff url('assets/avatar.jpg') center/cover; flex:none; box-shadow:0 2px 8px rgba(0,0,0,.3); }
+    .hy-navkeys { display:flex; gap:4px; font-size:1.25rem; }
+    .hy-navkeys span { filter:grayscale(1) opacity(.45); transition:.4s; }
+    .hy-navkeys span.on { filter:none; transform:scale(1.1); text-shadow:0 0 8px var(--hy-gold2); }
+    .hy-navbtns { display:flex; flex-wrap:wrap; gap:6px; }
+    .hy-btn-nav { background:rgba(255,255,255,.14); color:#fff; border:1px solid rgba(255,255,255,.35); padding:6px 12px; border-radius:999px; font-weight:700; font-size:.82rem; cursor:pointer; transition:.2s; }
+    .hy-btn-nav:hover:not(:disabled) { background:rgba(255,255,255,.28); }
+    .hy-btn-nav:disabled { opacity:.45; cursor:not-allowed; }
+    .hy-btn-nav.active { background:var(--hy-gold); color:#451a03; border-color:var(--hy-gold); }
+
+    .hy-screen { text-align:right; animation: hyFade .45s ease; }
+    @keyframes hyFade { from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none} }
+    .hy-pattern { background-color:var(--hy-lilac);
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 4l6 14 14-6-6 14 14 6-14 6 6 14-14-6-6 14-6-14-14 6 6-14-14-6 14-6-6-14 14 6z' fill='none' stroke='%236d28d9' stroke-opacity='.12' stroke-width='1.2'/%3E%3C/svg%3E"); }
+    .hy-hero-img { width:100%; border-radius:1.5rem; border:4px solid var(--hy-gold2); box-shadow:0 14px 30px -8px rgba(76,29,149,.45); display:block; }
+    .hy-title { font-family:'Cairo',sans-serif; font-weight:900; color:var(--hy-deep); }
+    .hy-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:800; border-radius:1rem; padding:.9rem 1.6rem; cursor:pointer; transition:.2s; border:0; font-size:1.05rem; font-family:inherit; }
+    .hy-btn:hover:not(:disabled) { transform:translateY(-2px) scale(1.02); }
+    .hy-btn-primary { background:linear-gradient(135deg,var(--hy-purple),var(--hy-pink)); color:#fff; box-shadow:0 8px 18px -6px rgba(109,40,217,.6); }
+    .hy-btn-gold { background:linear-gradient(135deg,var(--hy-gold2),var(--hy-gold)); color:#451a03; box-shadow:0 8px 18px -6px rgba(245,158,11,.6); }
+    .hy-btn-soft { background:#fff; color:var(--hy-deep); border:2px solid #c4b5fd; }
+    .hy-btn:disabled { opacity:.45; cursor:not-allowed; }
+    .hy-note { background:#fffbeb; border:1px solid #fde68a; color:#92400e; border-radius:1rem; padding:.8rem 1rem; font-weight:700; font-size:.92rem; }
+
+    .hy-map { display:grid; gap:12px; grid-template-columns:1fr; }
+    @media (min-width:640px){ .hy-map{ grid-template-columns:repeat(2,1fr);} }
+    @media (min-width:1024px){ .hy-map{ grid-template-columns:repeat(3,1fr);} }
+    .hy-st { position:relative; text-align:right; background:#fff; border:2px solid #ddd6fe; border-radius:1.25rem; padding:1rem 1rem 1rem 1rem; cursor:pointer; transition:.25s; display:flex; flex-direction:column; gap:6px; font-family:inherit; }
+    .hy-st:hover:not(.locked) { transform:translateY(-3px); border-color:var(--hy-purple); box-shadow:0 10px 22px -8px rgba(109,40,217,.4); }
+    .hy-st .num { width:36px; height:36px; border-radius:50%; background:var(--hy-purple); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:900; font-family:'Cairo',sans-serif; }
+    .hy-st h3 { font-family:'Cairo',sans-serif; font-weight:800; color:var(--hy-deep); font-size:1.05rem; }
+    .hy-st .state { font-size:.82rem; font-weight:700; color:#6b7280; }
+    .hy-st.done { border-color:var(--hy-gold); background:linear-gradient(180deg,#fffbeb,#fff); }
+    .hy-st.done .num { background:var(--hy-gold); color:#451a03; }
+    .hy-st.done .state { color:#b45309; }
+    .hy-st.current { border-color:var(--hy-pink); animation:hyPulse 1.8s infinite; }
+    @keyframes hyPulse { 0%,100%{box-shadow:0 0 0 0 rgba(190,24,93,.35)} 50%{box-shadow:0 0 0 8px rgba(190,24,93,0)} }
+    .hy-st.locked { opacity:.55; cursor:not-allowed; background:#f5f3ff; }
+    .hy-st.locked .num { background:#a78bfa; }
+    .hy-gate-card { grid-column:1/-1; background:linear-gradient(135deg,var(--hy-deep),var(--hy-purple)); color:#fff; border-color:var(--hy-gold); text-align:center; align-items:center; }
+    .hy-gate-card h3 { color:#fff; }
+    .hy-gate-card .state { color:var(--hy-gold2); }
+
+    .hy-progress { height:10px; border-radius:99px; background:#ede9fe; overflow:hidden; }
+    .hy-progress > i { display:block; height:100%; background:linear-gradient(90deg,var(--hy-gold),var(--hy-pink)); transition:width .6s; }
+
+    .hy-scene { display:flex; gap:14px; align-items:flex-start; background:#fff; border:2px solid #ddd6fe; border-radius:1.5rem; padding:1rem; }
+    .hy-scene-pic { width:96px; height:96px; border-radius:1.25rem; flex:none; background:#fff url('assets/character.jpg') center top/cover; border:3px solid var(--hy-gold2); }
+    @media (min-width:640px){ .hy-scene-pic{ width:140px; height:150px; } }
+    .hy-bubble { position:relative; flex:1; background:var(--hy-lilac); border-radius:1.25rem; padding:1rem 1.1rem; }
+    .hy-bubble p { color:#3b0764; font-size:1.15rem; line-height:2; font-weight:600; }
+    .hy-q { margin-top:.5rem; font-weight:900; color:var(--hy-pink); font-size:1.15rem; }
+    .hy-opt { width:100%; text-align:right; display:flex; align-items:center; gap:12px; background:var(--hy-cream); border:2px solid #fbcfe8; border-radius:1rem; padding:.9rem 1rem; font-weight:700; color:#1f2937; font-size:1.02rem; cursor:pointer; transition:.2s; font-family:inherit; }
+    .hy-opt:hover:not(:disabled) { background:#fce7f3; border-color:var(--hy-pink); transform:translateX(-3px); }
+    .hy-opt .badge { width:34px; height:34px; border-radius:50%; background:var(--hy-purple); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:900; flex:none; }
+    .hy-opt.right { background:#dcfce7; border-color:#4ade80; }
+    .hy-opt.right .badge { background:#16a34a; }
+    .hy-opt.wrong { background:#fef3c7; border-color:#f59e0b; opacity:.85; }
+    .hy-opt.wrong .badge { background:#d97706; }
+    .hy-opt:disabled { cursor:default; }
+    .hy-fb { border-radius:1.25rem; padding:1rem 1.2rem; border:2px solid; line-height:1.9; }
+    .hy-fb.ok { background:#f0fdf4; border-color:#86efac; }
+    .hy-fb.no { background:#fffbeb; border-color:#fcd34d; }
+    .hy-fb h4 { font-family:'Cairo',sans-serif; font-weight:800; font-size:1.1rem; margin-bottom:.25rem; }
+    .hy-reward { display:flex; align-items:center; gap:12px; background:linear-gradient(135deg,#fffbeb,#fef3c7); border:2px solid var(--hy-gold); border-radius:1.25rem; padding:.9rem 1.1rem; animation:hyPop .6s cubic-bezier(.2,1.6,.4,1); }
+    .hy-reward .k { font-size:2.4rem; filter:drop-shadow(0 0 8px var(--hy-gold2)); }
+    @keyframes hyPop { from{transform:scale(.4); opacity:0} to{transform:scale(1); opacity:1} }
+
+    /* بوابة الوقار */
+    .hy-gatewrap { position:relative; margin:0 auto; width:min(100%,420px); aspect-ratio:3/3.4; }
+    .hy-arch { position:absolute; inset:0; border-radius:50% 50% 1rem 1rem / 38% 38% 1rem 1rem; background:linear-gradient(180deg,#a78bfa,var(--hy-deep)); border:6px solid var(--hy-gold); overflow:hidden; box-shadow:0 20px 40px -12px rgba(76,29,149,.6); }
+    .hy-glow { position:absolute; inset:0; background:radial-gradient(circle at 50% 55%, #fff 0, var(--hy-gold2) 35%, transparent 75%); opacity:0; transition:opacity 1.6s 1s; }
+    .hy-door { position:absolute; top:0; bottom:0; width:50%; background:repeating-linear-gradient(135deg,#5b21b6 0 14px,#6d28d9 14px 28px); border:3px solid var(--hy-gold); transition:transform 1.8s cubic-bezier(.6,0,.2,1) .5s; display:flex; align-items:center; }
+    .hy-door.l { left:0; transform-origin:left; justify-content:flex-end; padding-inline:10px; }
+    .hy-door.r { right:0; transform-origin:right; justify-content:flex-start; padding-inline:10px; }
+    .hy-door::after { content:"✦"; color:var(--hy-gold2); font-size:1.6rem; }
+    .hy-gatewrap.open .hy-door.l { transform:translateX(-102%); }
+    .hy-gatewrap.open .hy-door.r { transform:translateX(102%); }
+    .hy-gatewrap.open .hy-glow { opacity:1; }
+    .hy-gate-title { position:absolute; inset:auto 0 12% 0; text-align:center; font-family:'Cairo',sans-serif; font-weight:900; color:var(--hy-deep); font-size:1.4rem; opacity:0; transition:opacity 1s 2s; }
+    .hy-gatewrap.open .hy-gate-title { opacity:1; }
+    .hy-keyrow { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+    .hy-keyitem { text-align:center; width:92px; opacity:0; transform:translateY(20px) scale(.6); }
+    .hy-keyitem.show { animation:hyKey .7s forwards cubic-bezier(.2,1.6,.4,1); }
+    .hy-keyitem .k { font-size:2.6rem; display:block; filter:drop-shadow(0 0 10px var(--hy-gold)); animation:hyShine 2s infinite alternate; }
+    .hy-keyitem small { display:block; font-weight:800; color:var(--hy-deep); font-size:.72rem; line-height:1.4; }
+    @keyframes hyKey { to{opacity:1; transform:none} }
+    @keyframes hyShine { from{transform:rotate(-8deg)} to{transform:rotate(8deg) scale(1.1)} }
+    .hy-laqab { display:inline-block; background:linear-gradient(135deg,var(--hy-gold2),var(--hy-gold)); color:#451a03; font-family:'Cairo',sans-serif; font-weight:900; font-size:1.6rem; padding:.5rem 1.6rem; border-radius:999px; box-shadow:0 8px 20px -6px rgba(245,158,11,.7); }
+
+    /* الشهادة */
+    .hy-cert { max-width:760px; margin:0 auto; border:10px double var(--hy-gold); border-radius:1rem; padding:1.6rem 1.4rem; text-align:center; background-color:#fffdf5;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 4l6 14 14-6-6 14 14 6-14 6 6 14-14-6-6 14-6-14-14 6 6-14-14-6 14-6-6-14 14 6z' fill='none' stroke='%23f59e0b' stroke-opacity='.18' stroke-width='1.2'/%3E%3C/svg%3E"); }
+    .hy-cert h2 { font-family:'Cairo',sans-serif; font-weight:900; color:var(--hy-deep); font-size:1.9rem; }
+    .hy-cert .nm { font-family:'Cairo',sans-serif; font-weight:900; color:var(--hy-pink); font-size:1.7rem; border-bottom:2px dotted var(--hy-gold); display:inline-block; min-width:220px; padding:0 .5rem; }
+    .hy-cert-avatar { width:92px; height:92px; border-radius:50%; margin:0 auto .6rem; border:4px solid var(--hy-gold); background:#fff url('assets/avatar.jpg') center/cover; }
+    .hy-input { border:2px solid #c4b5fd; border-radius:.9rem; padding:.7rem 1rem; font-size:1.05rem; font-family:inherit; width:100%; max-width:340px; text-align:center; }
+    .hy-input:focus { outline:3px solid #ddd6fe; border-color:var(--hy-purple); }
+    .hy-wiqar-hero { width:150px; height:150px; border-radius:50%; margin:0 auto; border:5px solid var(--hy-gold2); background:#fff url('assets/avatar.jpg') center/cover; box-shadow:0 10px 24px -8px rgba(76,29,149,.5); }
+    .hy-confirm { position:fixed; inset:0; background:rgba(30,10,60,.55); display:flex; align-items:center; justify-content:center; z-index:60; padding:1rem; }
+    .hy-confirm > div { background:#fff; border-radius:1.25rem; padding:1.4rem; max-width:380px; text-align:center; }
+    @media print {
+      body * { visibility:hidden !important; }
+      #hy-cert, #hy-cert * { visibility:visible !important; }
+      #hy-cert { position:absolute; inset:0; margin:0; max-width:none; }
+    }
+    @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
   </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
@@ -26,8 +145,112 @@
 
   <div id="game-container" class="max-w-7xl w-full bg-white rounded-3xl p-6 md:p-8 card-shadow border-2 border-pink-100 text-center relative overflow-hidden">
     
+    <!-- ===================== مغامرة مفاتيح الحياء (إضافة جديدة) ===================== -->
+    <header id="hy-nav" class="hy-nav">
+      <div class="hy-brand">
+        <span class="hy-avatar" role="img" aria-label="الفتاة ذات الحجاب البنفسجي"></span>
+        <div><b>رحلة الوقار</b><small>مغامرة الحياء ثم لعبة الحجاب</small></div>
+      </div>
+      <div class="hy-navkeys" id="hy-navkeys" aria-label="المفاتيح المجموعة"><span>🔑</span><span>🔑</span><span>🔑</span><span>🔑</span><span>🔑</span></div>
+      <nav class="hy-navbtns" aria-label="التنقل">
+        <button type="button" class="hy-btn-nav" id="nav-haya"><i class="fa-solid fa-map"></i> مغامرة الحياء</button>
+        <button type="button" class="hy-btn-nav" id="nav-wiqar" disabled title="تُفتح بعد جمع المفاتيح الخمسة"><i class="fa-solid fa-crown"></i> لعبة الحجاب</button>
+        <button type="button" class="hy-btn-nav" id="nav-mute" aria-pressed="false"><i class="fa-solid fa-volume-high"></i> الصوت</button>
+        <button type="button" class="hy-btn-nav" id="nav-reset"><i class="fa-solid fa-rotate-left"></i> مسح التقدم</button>
+      </nav>
+    </header>
+
+    <!-- الغلاف -->
+    <section id="hy-intro" class="hy-screen space-y-5">
+      <img class="hy-hero-img" src="assets/hero.jpg" alt="الفتاة ذات الحجاب البنفسجي تحمل مفتاحًا ذهبيًا وأمامها لافتة المحطات الخمس">
+      <h1 class="hy-title text-3xl text-center">مغامرة مفاتيح الحياء</h1>
+      <p class="text-gray-700 text-lg leading-8 text-center">امشي معنا في خمس محطات، واختاري التصرف الصحيح في كل موقف لتنالي مفتاحًا ذهبيًا. بعد جمع المفاتيح الخمسة تُفتح <b>بوابة الوقار</b>، وتنتقلين إلى لعبة «رحلة الوقار».</p>
+      <div class="hy-note text-center">🔑 خمس محطات ⟵ خمسة مفاتيح ⟵ بوابة الوقار ⟵ لعبة الحجاب</div>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <button type="button" id="intro-start" class="hy-btn hy-btn-primary"><i class="fa-solid fa-key"></i> ابدئي المغامرة</button>
+        <button type="button" id="intro-skip" class="hy-btn hy-btn-soft hidden"></button>
+      </div>
+    </section>
+
+    <!-- خريطة المحطات -->
+    <section id="hy-map" class="hy-screen hidden space-y-5">
+      <div class="flex items-center justify-between flex-wrap gap-2">
+        <h2 class="hy-title text-2xl">خريطة المحطات الخمس</h2>
+        <span class="font-extrabold text-purple-800" id="hy-count">0 / 5 مفاتيح</span>
+      </div>
+      <div class="hy-progress"><i id="hy-bar" style="width:0%"></i></div>
+      <div class="hy-map" id="hy-map-grid"></div>
+    </section>
+
+    <!-- المحطة -->
+    <section id="hy-station" class="hy-screen hidden space-y-4">
+      <div class="flex items-center justify-between flex-wrap gap-2">
+        <button type="button" id="st-back" class="hy-btn hy-btn-soft" style="padding:.5rem 1rem;font-size:.9rem"><i class="fa-solid fa-map"></i> الخريطة</button>
+        <span class="font-extrabold text-purple-800" id="st-indicator"></span>
+      </div>
+      <h2 class="hy-title text-2xl" id="st-title"></h2>
+      <div class="hy-scene">
+        <div class="hy-scene-pic" role="img" aria-label="الفتاة ذات الحجاب البنفسجي"></div>
+        <div class="hy-bubble">
+          <p id="st-situation"></p>
+          <p class="hy-q" id="st-question"></p>
+        </div>
+      </div>
+      <div id="st-options" class="space-y-3"></div>
+      <div id="st-feedback" class="hidden" aria-live="polite"></div>
+      <div id="st-reward" class="hidden"></div>
+      <div id="st-actions" class="flex flex-wrap gap-3 justify-center"></div>
+    </section>
+
+    <!-- بوابة الوقار -->
+    <section id="hy-gate" class="hy-screen hidden space-y-6 text-center">
+      <h2 class="hy-title text-3xl">🎉 فُتحت بوابة الوقار!</h2>
+      <div class="hy-gatewrap" id="hy-gatewrap" aria-hidden="true">
+        <div class="hy-arch">
+          <div class="hy-glow"></div>
+          <div class="hy-door l"></div><div class="hy-door r"></div>
+        </div>
+        <div class="hy-gate-title">بوابة الوقار</div>
+      </div>
+      <div class="hy-keyrow" id="hy-gate-keys"></div>
+      <div><span class="hy-laqab">👑 صانعة الوقار</span></div>
+      <p class="text-gray-700 leading-8">أحسنتِ! جمعتِ المفاتيح الخمسة، وصار الطريق مفتوحًا إلى لعبة الحجاب.</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <button type="button" id="gate-cert" class="hy-btn hy-btn-gold"><i class="fa-solid fa-certificate"></i> شهادة إتمام المغامرة</button>
+        <button type="button" id="gate-go" class="hy-btn hy-btn-primary">الانتقال إلى لعبة الحجاب «رحلة الوقار» <i class="fa-solid fa-arrow-left"></i></button>
+      </div>
+      <div id="hy-cert-area" class="hidden space-y-4 pt-2">
+        <div class="space-y-2">
+          <label for="hy-name" class="font-bold text-purple-900 block">اكتبي اسمكِ لتظهر على الشهادة:</label>
+          <input id="hy-name" class="hy-input" type="text" maxlength="40" autocomplete="off" placeholder="اسم الطالبة">
+        </div>
+        <div id="hy-cert" class="hy-cert">
+          <div class="hy-cert-avatar"></div>
+          <h2>شهادة إتمام مغامرة الحياء</h2>
+          <p class="text-gray-700 mt-3 text-lg">تشهد «رحلة الوقار» بأن الطالبة</p>
+          <p class="my-3"><span class="nm" id="hy-cert-name">………………</span></p>
+          <p class="text-gray-700 text-lg leading-9">قد أتمّت محطات المغامرة الخمس وجمعت مفاتيح الحياء الخمسة،<br>ونالت لقب <b class="text-pink-700">«صانعة الوقار»</b>.</p>
+          <div class="hy-keyrow mt-3" id="hy-cert-keys"></div>
+          <p class="text-sm text-gray-500 mt-4" id="hy-cert-date"></p>
+        </div>
+        <button type="button" id="cert-print" class="hy-btn hy-btn-soft"><i class="fa-solid fa-print"></i> طباعة الشهادة أو حفظها PDF</button>
+      </div>
+    </section>
+
+    <div id="hy-confirm" class="hy-confirm hidden" role="dialog" aria-modal="true">
+      <div class="space-y-4">
+        <p class="font-extrabold text-purple-900 text-lg">هل تريدين مسح كل التقدم والبدء من جديد؟</p>
+        <div class="flex gap-3 justify-center">
+          <button type="button" id="confirm-yes" class="hy-btn hy-btn-primary" style="padding:.6rem 1.2rem">نعم، امسحي</button>
+          <button type="button" id="confirm-no" class="hy-btn hy-btn-soft" style="padding:.6rem 1.2rem">إلغاء</button>
+        </div>
+      </div>
+    </div>
+    <!-- ===================== نهاية مغامرة الحياء ===================== -->
+
     <!-- شاشة البداية -->
-    <div id="start-screen" class="space-y-6">
+    <div id="start-screen" class="hidden space-y-6">
+      <div class="hy-wiqar-hero" role="img" aria-label="الفتاة ذات الحجاب البنفسجي"></div>
       <div class="inline-block bg-pink-100 p-5 rounded-full text-6xl mb-2 animate-bounce">👑</div>
       <h1 class="text-3xl font-extrabold text-pink-700">رِحْلَةُ الْوَقَارِ وَالْأَمَانَةِ</h1>
       <p class="text-gray-600 text-lg">أَهْلًا بِكِ يَا بَطَلَةَ حَلْقَةِ الْقُرْآنِ الْكَرِيمِ فِي هَذِهِ الْمَغَامَرَةِ التَّرْبَوِيَّةِ الشَّائِقَةِ!</p>
@@ -75,6 +298,7 @@
 
     <!-- شاشة التتويج والمعرض -->
     <div id="end-screen" class="hidden space-y-6">
+      <div class="hy-wiqar-hero" role="img" aria-label="الفتاة ذات الحجاب البنفسجي"></div>
       <div class="inline-block bg-amber-100 p-5 rounded-full text-6xl">👑</div>
       <h2 class="text-3xl font-extrabold text-pink-700">مُبَارَكٌ التَّتْوِيجُ يَا حَافِظَةَ الْقُرْآنِ!</h2>
       <p class="text-gray-600">لَقَدْ أَتْمَمْتِ رِحْلَةَ الْوَقَارِ بِنَجَاحٍ وَاعْتِزَازٍ بِهُوِيَّتِكِ الْإِسْلَامِيَّةِ.</p>
@@ -84,7 +308,7 @@
         <p class="text-sm text-pink-600 mt-1">وِسَامُ الْحِجَابِ وَالْوَقَارِ يُزَيِّنُكِ وَيَحْفَظُ كَرَامَتَكِ.</p>
       </div>
 
-      <div id="photo-section" class="border-t-2 border-pink-100 pt-6 space-y-5 text-center">
+      <div id="photo-section" class="hidden border-t-2 border-pink-100 pt-6 space-y-5 text-center" hidden aria-hidden="true" inert>
         <h3 class="font-extrabold text-2xl text-pink-800">🌸 حان وقت إطلالتكِ بالحجاب 🌸</h3>
         <p class="text-gray-600 leading-8">التقطي صورة واضحة من الأمام أو اختاري صورة بإذن صاحبتها. بعد موافقتكِ، سترسل الصورة إلى خدمة الذكاء الاصطناعي لإنشاء إطلالة حجاب واقعية.</p>
         <div class="max-w-md mx-auto rounded-3xl border-2 border-pink-200 bg-pink-50 p-3">
@@ -110,7 +334,7 @@
         </div>
         <div class="bg-green-50 border border-green-200 rounded-2xl p-4 text-green-900 text-sm leading-7 text-right">الخصوصية: لا نخزن الصورة في قاعدة بيانات ضمن هذا المشروع. تُرسل الصورة إلى مزود الذكاء الاصطناعي فقط بعد الموافقة، وقد تنطبق عليها سياسة معالجة المزود. لا تستخدمي صور طالبة دون إذن واضح.</div>
       </div>
-      <button onclick="location.reload()" class="w-full bg-gray-200 text-gray-700 font-bold py-3 rounded-2xl hover:bg-gray-300 transition flex items-center justify-center gap-2">
+      <button onclick="restartWiqar()" class="w-full bg-gray-200 text-gray-700 font-bold py-3 rounded-2xl hover:bg-gray-300 transition flex items-center justify-center gap-2">
         <i class="fa-solid fa-rotate-right"></i> إعادة اللعبة
       </button>
     </div>
@@ -124,6 +348,10 @@
     let currentScenario = 0;
     let score = 0;
     let currentAudioUrl = "";
+
+    /* مرحلة تصوير الطالبات مخفية حاليًا. الكود والواجهة والوظيفة الخلفية محفوظة كاملة.
+       لإعادة تفعيلها لاحقًا: اجعلي القيمة true (وتحتاج المدرسة حينها إلى OPENAI_API_KEY على Netlify). */
+    const PHOTO_STAGE_ENABLED = false;
 
     /* 
        =========================================================
@@ -323,6 +551,7 @@
     }
     function updateGenerateState() { generateButton.disabled = !(selectedPhoto && consentBox.checked); }
     function setSelectedPhoto(blob) {
+      if (!PHOTO_STAGE_ENABLED) return;
       if (!blob || !blob.type.startsWith('image/')) { aiStatus.textContent = 'يرجى اختيار ملف صورة صالح.'; return; }
       selectedPhoto = blob;
       if (selectedPhotoUrl) URL.revokeObjectURL(selectedPhotoUrl);
@@ -337,6 +566,7 @@
       updateGenerateState();
     }
     document.getElementById('camera-start').addEventListener('click', async () => {
+      if (!PHOTO_STAGE_ENABLED) return;
       try {
         stopPhotoCamera();
         photoStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
@@ -348,6 +578,7 @@
       } catch (err) { aiStatus.textContent = 'تعذر تشغيل الكاميرا. افتحي الموقع عبر HTTPS واسمحي باستخدام الكاميرا، أو اختاري صورة من الجهاز.'; }
     });
     document.getElementById('camera-snap').addEventListener('click', () => {
+      if (!PHOTO_STAGE_ENABLED) return;
       if (!photoStream || !cameraVideo.videoWidth) return;
       const canvas = document.createElement('canvas');
       const scale = Math.min(1, 1400 / cameraVideo.videoWidth);
@@ -358,6 +589,7 @@
     photoInput.addEventListener('change', event => { const file = event.target.files && event.target.files[0]; if (file) setSelectedPhoto(file); });
     consentBox.addEventListener('change', updateGenerateState);
     generateButton.addEventListener('click', async () => {
+      if (!PHOTO_STAGE_ENABLED) return;
       if (!selectedPhoto || !consentBox.checked) return;
       generateButton.disabled = true;
       document.getElementById('camera-start').disabled = true;
@@ -392,9 +624,352 @@
     });
     window.addEventListener('beforeunload', () => { stopPhotoCamera(); if (selectedPhotoUrl) URL.revokeObjectURL(selectedPhotoUrl); });
 
-    window.onload = function() {
-      playAudio(startAudioUrl);
+    /* تشغيل صوت البداية الأصلي صار عند الانتقال إلى شاشة لعبة الحجاب (انظر routeWiqar)، بدل التشغيل عند تحميل الصفحة. */
+  </script>
+
+  <script>
+  /* =====================================================================
+     مغامرة مفاتيح الحياء + ربطها بلعبة «رحلة الوقار» الأصلية.
+     هذا الملف لا يعدّل أسئلة اللعبة الأصلية؛ يغلّف دوالها فقط لحفظ التقدم.
+     ===================================================================== */
+  (function () {
+    'use strict';
+    var STORE = 'rihlat_progress_v1';
+
+    /* أصوات مغامرة الحياء: صامتة حاليًا. ضعي رابط/مسار ملف الصوت بين علامتي الاقتباس لتفعيله لاحقًا.
+       (مثال: 'assets/audio/station1.mp3'). start/gate/reward أصوات عامة، وstations[i] لكل محطة. */
+    var HAYA_AUDIO = {
+      start: '', gate: '', reward: '', wrong: '',
+      stations: ['', '', '', '', '']
     };
+
+    /* محتوى المحطات كما اعتُمد حرفيًا. question لا يوجد إلا في المحطة الأولى. */
+    var STATIONS = [
+      { title: 'المحطة الأولى: حيائي مع نفسي',
+        situation: 'شخص مجهول يطلب من الطالبة إرسال صورة شخصية خاصة ويعدها بالسرية.',
+        question: 'ماذا تفعلين؟',
+        options: ['أرسل الصورة ما دام وعدني بالسرية.', 'أرفض إرسال الصورة وأحافظ على خصوصيتي.', 'أرسلها لصديقتي لتقرر عني.'],
+        correct: 1,
+        feedback: 'خصوصيتك حق لكِ، ولا ينبغي إرسال صورك الخاصة لشخص مجهول. وإذا شعرتِ بالضغط أو التهديد، اطلبي المساعدة من شخص بالغ موثوق.',
+        reward: 'مفتاح احترام الذات والخصوصية' },
+      { title: 'المحطة الثانية: حيائي في تعاملي',
+        situation: 'فتاة تسقط كتبها، وبعض الطالبات يضحكن عليها.',
+        question: '',
+        options: ['أساعدها في جمع الكتب وأتحدث معها بلطف.', 'أضحك مع الطالبات على ما حدث.', 'أتجاهلها وأواصل طريقي.'],
+        correct: 0,
+        feedback: 'الحياء يظهر في احترام الآخرين وحفظ مشاعرهم واختيار الكلمات الطيبة.',
+        reward: 'مفتاح الاحترام وحسن التعامل' },
+      { title: 'المحطة الثالثة: حيائي في عالمي الرقمي',
+        situation: 'شخص يطلب كلمة مرور الحساب مقابل هدية داخل اللعبة.',
+        question: '',
+        options: ['أرسل كلمة المرور لأحصل على الهدية.', 'أرفض مشاركة كلمة المرور وأخبر شخصًا بالغًا موثوقًا إذا شعرت بالضغط.', 'أرسل كلمة المرور لصديقتي لتحتفظ بها.'],
+        correct: 1,
+        feedback: 'كلمات المرور معلومات خاصة، ولا ينبغي مشاركتها مع الآخرين. اطلبي المساعدة إذا تعرضتِ للضغط أو التهديد.',
+        reward: 'مفتاح الخصوصية والأمان الرقمي' },
+      { title: 'المحطة الرابعة: حيائي في مظهري',
+        situation: 'الطالبة تستعد لحضور مناسبة وتفكر في اختيار ملابسها.',
+        question: '',
+        options: ['أختار مظهرًا محتشمًا وأنيقًا وأحرص على أن يعبر عن قيمي.', 'أهتم بالمظهر فقط دون الاهتمام بالحياء.', 'أعتقد أن الحياء يقتصر على الملابس فقط.'],
+        correct: 0,
+        feedback: 'الحياء قيمة متكاملة، والمظهر المحتشم أحد مظاهرها، ويمكن للفتاة أن تكون أنيقة وواثقة بنفسها مع التزامها بقيمها.',
+        reward: 'مفتاح الحشمة والوقار' },
+      { title: 'المحطة الخامسة: حيائي في اختياراتي',
+        situation: 'صديقات يسخرن من زميلة في مجموعة المحادثة ويطلبن من الطالبة المشاركة.',
+        question: '',
+        options: ['أشاركهن حتى لا أكون مختلفة عنهن.', 'أرفض المشاركة وأدافع عنها بأدب وأحاول إيقاف السخرية.', 'أضع تعليقًا ساخرًا ثم أحذف المحادثة.'],
+        correct: 1,
+        feedback: 'صاحبة القيم لا تتنازل عن مبادئها لإرضاء الآخرين، وتختار الخير وتحفظ كرامة الناس.',
+        reward: 'مفتاح القرار الواعي والثبات على القيم' }
+    ];
+    var LABELS = ['١', '٢', '٣', '٤', '٥'];
+    var SCREENS = ['hy-intro', 'hy-map', 'hy-station', 'hy-gate', 'start-screen', 'game-screen', 'end-screen'];
+
+    function $(id) { return document.getElementById(id); }
+    function defaults() { return { stage: 'haya', keys: [false, false, false, false, false], name: '', wiqar: { started: false, idx: 0, score: 0, finished: false } }; }
+    function load() {
+      try {
+        var r = JSON.parse(localStorage.getItem(STORE));
+        if (r && Array.isArray(r.keys) && r.keys.length === 5) {
+          var d = defaults();
+          d.stage = r.stage === 'wiqar' ? 'wiqar' : 'haya';
+          d.keys = r.keys.map(Boolean);
+          d.name = typeof r.name === 'string' ? r.name : '';
+          if (r.wiqar) { d.wiqar.started = !!r.wiqar.started; d.wiqar.idx = +r.wiqar.idx || 0; d.wiqar.score = +r.wiqar.score || 0; d.wiqar.finished = !!r.wiqar.finished; }
+          return d;
+        }
+      } catch (e) {}
+      return defaults();
+    }
+    var P = load();
+    function save() { try { localStorage.setItem(STORE, JSON.stringify(P)); } catch (e) {} }
+    function keyCount() { return P.keys.filter(Boolean).length; }
+    function hayaDone() { return keyCount() === 5; }
+
+    /* ---------- صوت مغامرة الحياء (صامت ما لم تُضبط الروابط) ---------- */
+    var hayaPlayer = new Audio();
+    function hayaSound(url) {
+      if (!url) return;
+      try { hayaPlayer.src = url; hayaPlayer.muted = muted; var p = hayaPlayer.play(); if (p && p.catch) p.catch(function () {}); } catch (e) {}
+    }
+    var muted = false;
+
+    /* ---------- التنقل بين الشاشات ---------- */
+    var gateTimers = [];
+    function show(id) {
+      gateTimers.forEach(clearTimeout); gateTimers = [];
+      SCREENS.forEach(function (s) { var el = $(s); if (el) el.classList.add('hidden'); });
+      $(id).classList.remove('hidden');
+      try { if (typeof stopPhotoCamera === 'function') stopPhotoCamera(); } catch (e) {}
+      try { window.scrollTo({ top: 0 }); } catch (e) {}
+      var inHaya = id.indexOf('hy-') === 0;
+      $('nav-haya').classList.toggle('active', inHaya);
+      $('nav-wiqar').classList.toggle('active', !inHaya);
+      refreshNav();
+    }
+    function refreshNav() {
+      var n = keyCount();
+      Array.prototype.forEach.call($('hy-navkeys').children, function (s, i) { s.classList.toggle('on', !!P.keys[i]); });
+      $('nav-wiqar').disabled = !hayaDone();
+    }
+
+    /* ---------- الغلاف ---------- */
+    function renderIntro() {
+      var n = keyCount();
+      var skip = $('intro-skip');
+      if (n > 0 && !hayaDone()) {
+        $('intro-start').innerHTML = '<i class="fa-solid fa-key"></i> تابعي من حيث توقفتِ';
+        skip.classList.add('hidden');
+      } else if (hayaDone()) {
+        $('intro-start').innerHTML = '<i class="fa-solid fa-door-open"></i> بوابة الوقار';
+      } else {
+        $('intro-start').innerHTML = '<i class="fa-solid fa-key"></i> ابدئي المغامرة';
+      }
+    }
+    function goIntro() { renderIntro(); show('hy-intro'); }
+
+    /* ---------- الخريطة ---------- */
+    function goMap() {
+      var grid = $('hy-map-grid'); grid.innerHTML = '';
+      var firstOpen = P.keys.indexOf(false);
+      STATIONS.forEach(function (st, i) {
+        var done = P.keys[i], locked = i > 0 && !P.keys[i - 1] && !done;
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'hy-st' + (done ? ' done' : '') + (locked ? ' locked' : '') + (i === firstOpen ? ' current' : '');
+        b.disabled = locked;
+        b.setAttribute('data-station', i);
+        b.innerHTML = '<span class="num">' + LABELS[i] + '</span><h3></h3><span class="state"></span>';
+        b.querySelector('h3').textContent = st.title.replace(/^[^:]*:\s*/, '');
+        b.querySelector('.state').textContent = done ? '🔑 ' + st.reward : (locked ? '🔒 تُفتح بعد المحطة السابقة' : 'جاهزة — اضغطي للبدء');
+        b.addEventListener('click', function () { openStation(i); });
+        grid.appendChild(b);
+      });
+      var g = document.createElement('button');
+      g.type = 'button'; g.id = 'map-gate';
+      g.className = 'hy-st hy-gate-card' + (hayaDone() ? '' : ' locked');
+      g.disabled = !hayaDone();
+      g.innerHTML = '<span style="font-size:2rem">' + (hayaDone() ? '🚪✨' : '🔒') + '</span><h3>بوابة الوقار</h3><span class="state">' + (hayaDone() ? 'مفتوحة — اضغطي للدخول' : 'تُفتح بعد جمع المفاتيح الخمسة') + '</span>';
+      g.addEventListener('click', function () { openGate(false); });
+      grid.appendChild(g);
+      var n = keyCount();
+      $('hy-count').textContent = n + ' / 5 مفاتيح';
+      $('hy-bar').style.width = (n * 20) + '%';
+      show('hy-map');
+    }
+
+    /* ---------- المحطة ---------- */
+    var cur = 0;
+    function openStation(i) {
+      cur = i;
+      var st = STATIONS[i], done = P.keys[i];
+      $('st-title').textContent = st.title;
+      $('st-indicator').textContent = 'المحطة ' + (i + 1) + ' من 5';
+      $('st-situation').textContent = st.situation;
+      var q = $('st-question');
+      q.textContent = st.question || 'اختاري التصرف المناسب:';
+      $('st-feedback').className = 'hidden'; $('st-feedback').innerHTML = '';
+      $('st-reward').className = 'hidden'; $('st-reward').innerHTML = '';
+      $('st-actions').innerHTML = '';
+      var box = $('st-options'); box.innerHTML = '';
+      st.options.forEach(function (t, j) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'hy-opt'; b.setAttribute('data-opt', j);
+        b.innerHTML = '<span class="badge">' + ['أ', 'ب', 'ج'][j] + '</span><span class="t"></span>';
+        b.querySelector('.t').textContent = t;
+        b.addEventListener('click', function () { answer(i, j, b); });
+        box.appendChild(b);
+      });
+      show('hy-station');
+      hayaSound(HAYA_AUDIO.stations[i]);
+    }
+    function answer(i, j, btn) {
+      var st = STATIONS[i], fb = $('st-feedback');
+      if (j === st.correct) {
+        Array.prototype.forEach.call($('st-options').children, function (b) { b.disabled = true; });
+        btn.classList.add('right');
+        var first = !P.keys[i];
+        P.keys[i] = true; save(); refreshNav();
+        fb.className = 'hy-fb ok';
+        fb.innerHTML = '<h4>✅ إجابة صحيحة!</h4><p></p>';
+        fb.querySelector('p').textContent = st.feedback;
+        var rw = $('st-reward');
+        rw.className = 'hy-reward';
+        rw.innerHTML = '<span class="k">🔑</span><div><b style="color:#92400e">مفتاح ذهبي جديد</b><div class="font-extrabold text-purple-900 text-lg" id="rw-text"></div></div>';
+        $('rw-text').textContent = st.reward;
+        if (first && typeof confetti === 'function') confetti({ particleCount: 70, spread: 70, origin: { y: 0.7 } });
+        hayaSound(HAYA_AUDIO.reward);
+        var act = $('st-actions'); act.innerHTML = '';
+        var next = document.createElement('button');
+        next.type = 'button'; next.id = 'st-next'; next.className = 'hy-btn hy-btn-primary';
+        if (hayaDone()) { next.innerHTML = 'افتحي بوابة الوقار <i class="fa-solid fa-door-open"></i>'; next.addEventListener('click', function () { openGate(true); }); }
+        else {
+          var nx = P.keys.indexOf(false);
+          next.innerHTML = 'المحطة التالية <i class="fa-solid fa-arrow-left"></i>';
+          next.addEventListener('click', function () { openStation(nx); });
+        }
+        act.appendChild(next);
+        var map = document.createElement('button');
+        map.type = 'button'; map.className = 'hy-btn hy-btn-soft'; map.innerHTML = '<i class="fa-solid fa-map"></i> الخريطة';
+        map.addEventListener('click', goMap); act.appendChild(map);
+        try { fb.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+      } else {
+        btn.disabled = true; btn.classList.add('wrong');
+        fb.className = 'hy-fb no';
+        fb.innerHTML = '<h4>💡 فكّري مرة أخرى</h4><p></p><p class="font-bold mt-1">اختاري تصرفًا آخر لتنالي المفتاح.</p>';
+        fb.querySelector('p').textContent = st.feedback;
+        hayaSound(HAYA_AUDIO.wrong);
+      }
+    }
+
+    /* ---------- بوابة الوقار والشهادة ---------- */
+    function keyHTML(i) { return '<div class="hy-keyitem"><span class="k">🔑</span><small></small></div>'; }
+    function fillKeys(el, animate) {
+      el.innerHTML = '';
+      STATIONS.forEach(function (st, i) {
+        var d = document.createElement('div'); d.className = 'hy-keyitem' + (animate ? '' : ' show');
+        d.innerHTML = '<span class="k">🔑</span><small></small>'; d.querySelector('small').textContent = st.reward.replace(/^مفتاح\s*/, '');
+        el.appendChild(d);
+        if (animate) gateTimers.push(setTimeout(function () { d.classList.add('show'); }, 900 + i * 450));
+      });
+    }
+    function openGate(celebrate) {
+      if (!hayaDone()) { goMap(); return; }
+      var w = $('hy-gatewrap'); w.classList.remove('open');
+      $('hy-cert-area').classList.add('hidden');
+      show('hy-gate');
+      fillKeys($('hy-gate-keys'), true);
+      gateTimers.push(setTimeout(function () { w.classList.add('open'); }, 60));
+      if (typeof confetti === 'function') {
+        gateTimers.push(setTimeout(function () { confetti({ particleCount: 140, spread: 90, origin: { y: 0.55 }, colors: ['#f59e0b', '#fcd34d', '#6d28d9', '#be185d'] }); }, 1800));
+        gateTimers.push(setTimeout(function () { confetti({ particleCount: 90, spread: 120, origin: { x: 0.2, y: 0.6 } }); confetti({ particleCount: 90, spread: 120, origin: { x: 0.8, y: 0.6 } }); }, 3200));
+      }
+      hayaSound(HAYA_AUDIO.gate);
+    }
+    function showCert() {
+      var a = $('hy-cert-area'); a.classList.remove('hidden');
+      $('hy-name').value = P.name || '';
+      renderCert();
+      fillKeys($('hy-cert-keys'), false);
+      try { a.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {}
+    }
+    function renderCert() {
+      var n = ($('hy-name').value || '').trim();
+      $('hy-cert-name').textContent = n || '………………';
+      var d; try { d = new Date().toLocaleDateString('ar', { year: 'numeric', month: 'long', day: 'numeric' }); } catch (e) { d = new Date().toDateString(); }
+      $('hy-cert-date').textContent = 'التاريخ: ' + d;
+    }
+
+    /* ---------- الانتقال إلى لعبة الحجاب الأصلية ---------- */
+    function goWiqar() {
+      if (!hayaDone()) { goMap(); return; }
+      P.stage = 'wiqar'; save();
+      routeWiqar();
+    }
+    function routeWiqar() {
+      var w = P.wiqar;
+      if (w.finished) {
+        score = Math.min(100, Math.max(0, w.score || 0));
+        show('end-screen');
+        window.showEndScreen();
+      } else if (w.started) {
+        currentScenario = Math.min(w.idx, scenarios.length - 1);
+        score = Math.min(100, Math.max(0, w.score || 0));
+        show('game-screen');
+        $('score').innerText = score;
+        window.loadScenario();
+      } else {
+        show('start-screen');
+        try { playAudio(startAudioUrl); } catch (e) {}
+      }
+    }
+
+    /* ---------- تغليف دوال اللعبة الأصلية لحفظ التقدم فقط (المحتوى لا يتغير) ---------- */
+    var _startGame = window.startGame, _loadScenario = window.loadScenario, _showEnd = window.showEndScreen, _selectOption = window.selectOption;
+    var MAX_SCORE = 100;
+    var scoredScenario = -1; /* رقم الموقف الذي احتُسبت نقاطه فعلًا */
+    window.selectOption = function (option) {
+      var before = score;
+      var r = _selectOption.apply(this, arguments);
+      if (option && option.correct) {
+        if (scoredScenario === currentScenario) score = before;        /* مُحتسَب سابقًا: لا نقاط إضافية */
+        else { scoredScenario = currentScenario; score = Math.min(MAX_SCORE, score); }
+      } else { score = before; }
+      $('score').innerText = score;
+      return r;
+    };
+    window.startGame = function () {
+      P.wiqar = { started: true, idx: 0, score: 0, finished: false }; P.stage = 'wiqar'; save();
+      return _startGame.apply(this, arguments);
+    };
+    window.loadScenario = function () {
+      scoredScenario = -1;
+      score = Math.min(MAX_SCORE, Math.max(0, score || 0));
+      var r = _loadScenario.apply(this, arguments);
+      P.wiqar.started = true; P.wiqar.finished = false; P.wiqar.idx = currentScenario; P.wiqar.score = score; P.stage = 'wiqar'; save();
+      return r;
+    };
+    window.showEndScreen = function () {
+      var r = _showEnd.apply(this, arguments);
+      P.wiqar.started = true; P.wiqar.finished = true; P.wiqar.score = score; P.stage = 'wiqar'; save();
+      return r;
+    };
+    /* زر «إعادة اللعبة» الأصلي: يعيد لعبة الحجاب فقط ويُبقي مفاتيح الحياء */
+    window.restartWiqar = function () {
+      P.wiqar = { started: false, idx: 0, score: 0, finished: false }; P.stage = 'wiqar'; save();
+      location.reload();
+    };
+
+    /* ---------- الأزرار ---------- */
+    $('intro-start').addEventListener('click', function () { if (hayaDone()) openGate(false); else goMap(); });
+    $('nav-haya').addEventListener('click', function () { P.stage = 'haya'; save(); goMap(); });
+    $('nav-wiqar').addEventListener('click', goWiqar);
+    $('st-back').addEventListener('click', goMap);
+    $('gate-cert').addEventListener('click', showCert);
+    $('gate-go').addEventListener('click', goWiqar);
+    $('hy-name').addEventListener('input', function () { P.name = this.value.slice(0, 40); save(); renderCert(); });
+    $('cert-print').addEventListener('click', function () { renderCert(); window.print(); });
+    $('nav-mute').addEventListener('click', function () {
+      muted = !muted; this.setAttribute('aria-pressed', muted);
+      this.innerHTML = muted ? '<i class="fa-solid fa-volume-xmark"></i> مكتوم' : '<i class="fa-solid fa-volume-high"></i> الصوت';
+      var a = $('game-audio'); if (a) a.muted = muted; hayaPlayer.muted = muted;
+    });
+    $('nav-reset').addEventListener('click', function () { $('hy-confirm').classList.remove('hidden'); });
+    $('confirm-no').addEventListener('click', function () { $('hy-confirm').classList.add('hidden'); });
+    $('confirm-yes').addEventListener('click', function () { try { localStorage.removeItem(STORE); } catch (e) {} location.reload(); });
+
+    /* مرحلة الصور: تبقى مخفية وغير قابلة للتفاعل ما دام PHOTO_STAGE_ENABLED = false */
+    if (PHOTO_STAGE_ENABLED) {
+      var ps = $('photo-section'); ps.classList.remove('hidden'); ps.removeAttribute('hidden'); ps.removeAttribute('aria-hidden'); ps.removeAttribute('inert');
+    }
+
+    /* ---------- نقطة الدخول ---------- */
+    hayaSound(HAYA_AUDIO.start);
+    if (P.stage === 'wiqar' && hayaDone()) routeWiqar();
+    else if (hayaDone()) { P.stage = 'haya'; openGate(false); }
+    else if (keyCount() > 0) { renderIntro(); goMap(); }
+    else goIntro();
+    refreshNav();
+  })();
   </script>
 </body>
 </html>
